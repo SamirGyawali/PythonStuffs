@@ -6,7 +6,7 @@ subject_urls = {
     'EG': ['https://hamrocsit.com/semester/sixth/e-governance/question-bank/', 'https://hamrocsit.com/semester/sixth/e-governance/question-bank/2079', 'https://hamrocsit.com/semester/sixth/e-governance/question-bank/2078', 'https://hamrocsit.com/semester/sixth/e-governance/question-bank/2076'],
     'NCC': ['https://hamrocsit.com/semester/sixth/ncc/question-bank/', 'https://hamrocsit.com/semester/sixth/ncc/question-bank/2076', 'https://hamrocsit.com/semester/sixth/ncc/question-bank/2079', 'https://hamrocsit.com/semester/sixth/ncc/question-bank/2078'],
     'TW': ['https://hamrocsit.com/semester/sixth/tw/question-bank/', 'https://hamrocsit.com/semester/sixth/tw/question-bank/2074', 'https://hamrocsit.com/semester/sixth/tw/question-bank/2075', 'https://hamrocsit.com/semester/sixth/tw/question-bank/2079', 'https://hamrocsit.com/semester/sixth/tw/question-bank/2078'],
-    'CDC': ['https://hamrocsit.com/semester/sixth/cdc/question-bank/', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2076', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2078']
+    'CDC': ['https://hamrocsit.com/semester/sixth/cdc/question-bank/', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2075', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2076', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2078']
 }
 
 
@@ -36,7 +36,7 @@ def scrap_this(url):
             if(qsn_no <= 3):
                 print(f"{qsn_no}. (10-marks) {qsn}")
             else:
-                print(f"{qsn_no}. (5-marks {qsn}")
+                print(f"{qsn_no}. (5-marks) {qsn}")
 
 
 def get_user_input():
@@ -69,12 +69,7 @@ if(user == 5):
 
 # print(urls_to_scrape)
 
-## not working! i'll look at it later
+## implement writing into file
 
-with open('Scrapped_Questions.txt', 'w') as qsnfile:
-    for url in urls_to_scrape:
-        content = scrap_this(url)
-        if not content:
-            continue
-        for line in content:
-            qsnfile.writeline(line + '\n')
+for url in urls_to_scrape:
+    content = scrap_this(url)
