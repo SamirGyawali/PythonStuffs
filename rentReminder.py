@@ -1,11 +1,12 @@
-import nepali_datetime
 import time
-from datetime import datetime, timedelta
-import schedule
+
+import nepali_datetime
+import subprocess
+import datetime
+from plyer import notification
+
 
 RENT_DUE_DAY_BS = 1;
-def remind_to_pay_rent():
-    print("Reminder: Rent pay day!")
 
 # remaining days
 def calculate_days_until_due():
@@ -17,34 +18,18 @@ def calculate_days_until_due():
         else:
             next_due_date_bs = nepali_datetime.date(today.year, today.month+1, RENT_DUE_DAY_BS)
 
-    ## convert nepali date into AD, because schedule library works with AD
+    ## convert nepali date into AD, because subprocess library works with AD
     next_due_date_ad = next_due_date_bs.to_datetime_date()
-    today_ad = datetime.today()
+    today_ad = datetime.date.today()
+    days_left = (next_due_date_ad - today_ad).days
 
-    return (next_due_date_ad - today_ad).days
+    return (days_left)
 
-def schedule_reminder():
-    days_until_due = calculate_days_until_due()
-    if days_until_due <= 3:
-        schedule.every().day.at("20:00").do(remind_to_pay_rent())
-    elif days_until_due > 5:
-        interval = days_until_due // 2
-        schedule.every(interval).days.at("20:00").do(remind_to_pay_rent())
-    else:
-        schedule.every(3).days.at("20:00").do(remind_to_pay_rent())
+def remind(days_remianing):
+    if days_remianing < 4:
+        message = f"Reminder: Pay your rent soon! Only {days_remianing} days left"
+        notification.notify(title="Rent reminder", message=message, timeout=0)
 
-# initial scheduling on the 1st of each nepali month
-def initial_schedule():
-    today = nepali_datetime.date.today()
-    if today.day == 1:
-        schedule_reminder()
-        ## recalculate and reschedule daily
-        schedule.every().day.at("9:00").do(schedule_reminder())
 
-initial_schedule()
-def main():
-        schedule.run_pending()
-        time.sleep(60)
-
-if __name__ == "__main__":
-    main()
+days_remaining = calculate_days_until_due()
+remind(days_remaining)
