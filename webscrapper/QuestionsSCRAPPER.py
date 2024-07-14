@@ -6,7 +6,8 @@ subject_urls = {
     'EG': ['https://hamrocsit.com/semester/sixth/e-governance/question-bank/', 'https://hamrocsit.com/semester/sixth/e-governance/question-bank/2079', 'https://hamrocsit.com/semester/sixth/e-governance/question-bank/2078', 'https://hamrocsit.com/semester/sixth/e-governance/question-bank/2076'],
     'NCC': ['https://hamrocsit.com/semester/sixth/ncc/question-bank/', 'https://hamrocsit.com/semester/sixth/ncc/question-bank/2076', 'https://hamrocsit.com/semester/sixth/ncc/question-bank/2079', 'https://hamrocsit.com/semester/sixth/ncc/question-bank/2078'],
     'TW': ['https://hamrocsit.com/semester/sixth/tw/question-bank/', 'https://hamrocsit.com/semester/sixth/tw/question-bank/2074', 'https://hamrocsit.com/semester/sixth/tw/question-bank/2075', 'https://hamrocsit.com/semester/sixth/tw/question-bank/2079', 'https://hamrocsit.com/semester/sixth/tw/question-bank/2078'],
-    'CDC': ['https://hamrocsit.com/semester/sixth/cdc/question-bank/', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2075', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2076', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2078']
+    'CDC': ['https://hamrocsit.com/semester/sixth/cdc/question-bank/', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2075', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2076', 'https://hamrocsit.com/semester/sixth/cdc/question-bank/2078'],
+    'EC': ['https://hamrocsit.com/semester/sixth/e-commerce/question-bank/', 'https://hamrocsit.com/semester/sixth/e-commerce/question-bank/2078', 'https://hamrocsit.com/semester/sixth/e-commerce/question-bank/2076', 'https://hamrocsit.com/semester/sixth/e-commerce/question-bank/2079']
 }
 
 
@@ -43,7 +44,7 @@ def get_user_input():
     while True:
         try:
             user_input = int(input("Enter index of the subject: "))
-            if(user_input>5):
+            if(user_input>6):
                 print("Enter valid index")
             else:
                 return user_input
@@ -52,7 +53,7 @@ def get_user_input():
 
 
 
-print(f"list of subjects: 1.SE, 2.EG, 3.NCC, 4.TW, 5.CDC\n"
+print(f"list of subjects: 1.SE, 2.EG, 3.NCC, 4.TW, 5.CDC 6.EC\n"
       f" type 1, 2, 3 based on index of subject to scrap that subject")
 user = get_user_input()
 
@@ -66,10 +67,12 @@ if(user == 4):
     urls_to_scrape = subject_urls['TW']
 if(user == 5):
     urls_to_scrape = subject_urls['CDC']
+if(user == 6):
+    urls_to_scrape = subject_urls['EC']
 
 # print(urls_to_scrape)
 
-## implement writing into file
+## todo implement writing into file
 
 for url in urls_to_scrape:
-    content = scrap_this(url)
+    scrap_this(url)

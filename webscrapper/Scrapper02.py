@@ -10,8 +10,4 @@ for job in jobs:
         company_name = job.find('h3', class_='joblist-comp-name').text.replace(' ','')
         skills = job.find('span', class_='srp-skills').text.replace(' ', '')
 
-        print(f'''
-    company name {company_name}
-    skills required {skills}
-    ''')
-        print(' ')
+        print(f'''company name {company_name} skills required {skills}''')

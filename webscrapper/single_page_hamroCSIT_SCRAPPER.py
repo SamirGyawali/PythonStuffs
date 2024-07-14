@@ -16,7 +16,6 @@ print(f"{date} {subject}")
 print()
 
 
-qsn_group_divs = soup.find_all('div', class_='qsn_group')
 qsn_divs = soup.find_all('div', class_='qnbank_content')
 
 
@@ -29,4 +28,3 @@ for div in qsn_divs:
             print(f"{qsn_no}. (10-Marks) {qsn}")
         else:
             print(f"{qsn_no}. (5-Marks) {qsn}")
-        print()
